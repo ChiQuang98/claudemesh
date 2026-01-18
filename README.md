@@ -10,11 +10,14 @@ npm install -g @claudemesh/cli
 
 # Initialize in your project
 cd my-project
-claudemesh init
+ccmesh init
 
 # Add domain packages
-claudemesh add git
-claudemesh add backend-node
+ccmesh add git
+ccmesh add backend-node
+
+# Or add globally (available in all projects)
+ccmesh add git --global
 
 # Start using with Claude Code
 claude
@@ -45,12 +48,58 @@ claude
 ## CLI Commands
 
 ```bash
-claudemesh init                    # Initialize .claude/ structure
-claudemesh add <domain>           # Add domain package (e.g., git, backend-node)
-claudemesh remove <domain>        # Remove domain
-claudemesh list                   # List installed domains with details
-claudemesh sync                   # Re-sync domains from node_modules
-claudemesh validate               # Validate all agent/skill files
+ccmesh init                        # Initialize .claude/ structure
+ccmesh add <domain>                # Add domain package locally (e.g., git, backend-node)
+ccmesh add <domain> --global       # Add domain package globally (available in all projects)
+ccmesh remove <domain>             # Remove local domain
+ccmesh remove <domain> --global    # Remove global domain
+ccmesh list                        # List installed domains (global + local)
+ccmesh available                   # List all available domains to install
+ccmesh sync                        # Re-sync domains from node_modules
+ccmesh validate                    # Validate all agent/skill files
+```
+
+## Global vs Local Installation
+
+### Local Installation (Default)
+- Domains are added to `.claude/` in your project directory
+- Only available in that specific project
+- Great for project-specific domains (e.g., `backend-node`, `frontend-react`)
+
+```bash
+ccmesh add backend-node
+ccmesh add frontend-react
+```
+
+### Global Installation
+- Domains are added to `~/.claude/` in your home directory
+- Available in ALL projects
+- Perfect for universal domains (e.g., `git`)
+
+```bash
+ccmesh add git --global
+```
+
+### View Installed Domains
+The `ccmesh list` command shows both global and local installations:
+
+```bash
+ccmesh list
+```
+
+Output:
+```
+🌍 Globally Installed:
+  @claudemesh/git (v1.0.0) [global]
+    ├── agents (4)
+    └── skills (2)
+
+─────────────────────────────────────
+
+📁 Locally Installed:
+  @claudemesh/backend-node (v1.0.0)
+    ├── agents (4)
+    └── skills (4)
 ```
 
 ## Usage Examples
@@ -100,15 +149,15 @@ mkdir ~/test-claudemesh
 cd ~/test-claudemesh
 
 # Initialize with local CLI
-claudemesh init
+ccmesh init
 
 # Add domain packages
-claudemesh add git
-claudemesh add backend-node
+ccmesh add git
+ccmesh add backend-node
 
 # Verify installation
-claudemesh list
-claudemesh validate
+ccmesh list
+ccmesh validate
 
 # Test with Claude Code
 claude --agent commit-expert -p "Help me write a commit message"
@@ -223,8 +272,8 @@ Before publishing, ensure each package has:
    ```bash
    cd ~/test-claudemesh
    npm install -g @claudemesh/cli
-   claudemesh init
-   claudemesh add git
+   ccmesh init
+   ccmesh add git
    ```
 
 ### Version Management

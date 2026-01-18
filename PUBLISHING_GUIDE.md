@@ -203,7 +203,7 @@ Or set a specific version:
    ```bash
    cd /tmp/test-claudemesh
    npm install -g @claudemesh/cli
-   claudemesh init
+   ccmesh init
    ```
 
 5. **Keep CHANGELOG.md** - Document what changed in each version

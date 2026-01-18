@@ -1,10 +1,10 @@
 {
   "name": "@claudemesh/cli",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "CLI tool for managing ClaudeMesh domain packages",
   "main": "dist/index.js",
   "bin": {
-    "claudemesh": "./bin/claudemesh.js"
+    "ccmesh": "./bin/ccmesh.js"
   },
   "scripts": {
     "build": "tsc",

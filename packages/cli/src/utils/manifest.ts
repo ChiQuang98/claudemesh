@@ -1,12 +1,21 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import * as os from 'os';
 import { Manifest, ManifestDomain } from '../types';
 
-const MANIFEST_PATH = '.claude/claudemesh.json';
+const LOCAL_MANIFEST_PATH = '.claude/claudemesh.json';
 
-export async function readManifest(): Promise<Manifest> {
-  if (await fs.pathExists(MANIFEST_PATH)) {
-    return await fs.readJSON(MANIFEST_PATH);
+function getManifestPath(global = false): string {
+  if (global) {
+    return path.join(os.homedir(), '.claude', 'claudemesh.json');
+  }
+  return LOCAL_MANIFEST_PATH;
+}
+
+export async function readManifest(global = false): Promise<Manifest> {
+  const manifestPath = getManifestPath(global);
+  if (await fs.pathExists(manifestPath)) {
+    return await fs.readJSON(manifestPath);
   }
 
   return {
@@ -15,17 +24,19 @@ export async function readManifest(): Promise<Manifest> {
   };
 }
 
-export async function writeManifest(manifest: Manifest): Promise<void> {
-  await fs.writeJSON(MANIFEST_PATH, manifest, { spaces: 2 });
+export async function writeManifest(manifest: Manifest, global = false): Promise<void> {
+  const manifestPath = getManifestPath(global);
+  await fs.writeJSON(manifestPath, manifest, { spaces: 2 });
 }
 
 export async function addDomainToManifest(
   domainName: string,
   version: string,
   agents: string[],
-  skills: string[]
+  skills: string[],
+  global = false
 ): Promise<void> {
-  const manifest = await readManifest();
+  const manifest = await readManifest(global);
 
   manifest.domains[domainName] = {
     version,
@@ -33,29 +44,42 @@ export async function addDomainToManifest(
     skills,
   };
 
-  await writeManifest(manifest);
+  await writeManifest(manifest, global);
 }
 
-export async function removeDomainFromManifest(domainName: string): Promise<void> {
-  const manifest = await readManifest();
+export async function removeDomainFromManifest(domainName: string, global = false): Promise<void> {
+  const manifest = await readManifest(global);
   delete manifest.domains[domainName];
-  await writeManifest(manifest);
+  await writeManifest(manifest, global);
 }
 
-export async function getDomainInfo(domainName: string): Promise<ManifestDomain | null> {
-  const manifest = await readManifest();
+export async function getDomainInfo(domainName: string, global = false): Promise<ManifestDomain | null> {
+  const manifest = await readManifest(global);
   return manifest.domains[domainName] || null;
 }
 
-export async function getAllDomains(): Promise<Record<string, ManifestDomain>> {
-  const manifest = await readManifest();
+export async function getAllDomains(global = false): Promise<Record<string, ManifestDomain>> {
+  const manifest = await readManifest(global);
   return manifest.domains;
 }
 
-export async function initManifest(): Promise<void> {
+export async function getAllDomainsCombined(): Promise<{
+  global: Record<string, ManifestDomain>;
+  local: Record<string, ManifestDomain>;
+}> {
+  const globalDomains = await readManifest(true);
+  const localDomains = await readManifest(false);
+
+  return {
+    global: globalDomains.domains,
+    local: localDomains.domains,
+  };
+}
+
+export async function initManifest(global = false): Promise<void> {
   const manifest: Manifest = {
     version: '1.0.0',
     domains: {},
   };
-  await writeManifest(manifest);
+  await writeManifest(manifest, global);
 }

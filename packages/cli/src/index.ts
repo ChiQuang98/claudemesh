@@ -8,11 +8,12 @@ import { remove } from './commands/remove';
 import { list } from './commands/list';
 import { sync } from './commands/sync';
 import { validate } from './commands/validate';
+import { available } from './commands/available';
 
 const program = new Command();
 
 program
-  .name('claudemesh')
+  .name('ccmesh')
   .description('CLI tool for managing ClaudeMesh domain packages')
   .version('1.0.0');
 
@@ -26,15 +27,17 @@ program
 program
   .command('add <domain>')
   .description('Add a domain package (e.g., git, backend-node, frontend-react)')
-  .action(async (domain: string) => {
-    await add(domain);
+  .option('-g, --global', 'Install globally to ~/.claude/ (available in all projects)')
+  .action(async (domain: string, options) => {
+    await add(domain, options.global);
   });
 
 program
   .command('remove <domain>')
   .description('Remove a domain package')
-  .action(async (domain: string) => {
-    await remove(domain);
+  .option('-g, --global', 'Remove from global installation (~/.claude/)')
+  .action(async (domain: string, options) => {
+    await remove(domain, options.global);
   });
 
 program
@@ -42,6 +45,13 @@ program
   .description('List installed domains')
   .action(async () => {
     await list();
+  });
+
+program
+  .command('available')
+  .description('List all available domains to install')
+  .action(async () => {
+    await available();
   });
 
 program
@@ -66,9 +76,10 @@ if (!process.argv.slice(2).length) {
   program.outputHelp();
   console.log();
   console.log(chalk.gray('Examples:'));
-  console.log(chalk.cyan('  claudemesh init'));
-  console.log(chalk.cyan('  claudemesh add git'));
-  console.log(chalk.cyan('  claudemesh add backend-node'));
-  console.log(chalk.cyan('  claudemesh list'));
+  console.log(chalk.cyan('  ccmesh init'));
+  console.log(chalk.cyan('  ccmesh add git'));
+  console.log(chalk.cyan('  ccmesh add backend-node'));
+  console.log(chalk.cyan('  ccmesh list'));
+  console.log(chalk.cyan('  ccmesh available'));
   console.log();
 }

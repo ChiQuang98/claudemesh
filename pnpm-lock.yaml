@@ -57,13 +57,21 @@ importers:
         specifier: ^5.3.0
         version: 5.9.3
 
+  packages/data-engineering: {}
+
   packages/database-athena: {}
 
+  packages/database-bigquery: {}
+
   packages/database-optimization: {}
+
+  packages/database-redshift: {}
 
   packages/frontend-react: {}
 
   packages/git: {}
+
+  packages/python-data: {}
 
 packages:
 

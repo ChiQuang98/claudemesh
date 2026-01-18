@@ -1,0 +1,25 @@
+{
+  "name": "@claudemesh/data-engineering",
+  "version": "1.0.1",
+  "description": "Data engineering workflows and agents for ETL, pipelines, and data quality",
+  "keywords": [
+    "claude-code",
+    "data-engineering",
+    "etl",
+    "pipelines",
+    "data-quality",
+    "airflow",
+    "dbt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

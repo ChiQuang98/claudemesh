@@ -10,7 +10,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PUBLISH_ORDER=("cli" "git" "backend-node" "database-optimization" "database-athena" "frontend-react")
+PUBLISH_ORDER=("cli" "git" "backend-node" "database-optimization" "database-athena" "frontend-react" "data-engineering" "database-bigquery" "database-redshift" "python-data")
 SCOPE="@claudemesh"
 ROOT_DIR="$(pwd)"
 
@@ -218,8 +218,8 @@ publish_package() {
 
   # Check if package.json exists
   if [[ ! -f "$pkg_dir/package.json" ]]; then
-    print_error "package.json not found in $pkg_dir"
-    return 1
+    print_warning "package.json not found in $pkg_dir - skipping (not ready to publish)"
+    return 0
   fi
 
   local current_version=$(get_current_version "$pkg_dir")

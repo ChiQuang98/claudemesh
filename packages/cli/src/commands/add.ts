@@ -36,11 +36,12 @@ async function findLocalPackage(domainName: string): Promise<string | null> {
   return null;
 }
 
-export async function add(domainName: string): Promise<void> {
-  console.log(chalk.blue.bold(`\n📦 Adding @claudemesh/${domainName}...\n`));
+export async function add(domainName: string, global = false): Promise<void> {
+  const location = global ? 'globally' : 'locally';
+  console.log(chalk.blue.bold(`\n📦 Adding @claudemesh/${domainName} ${location}...\n`));
 
   // Ensure .claude/ directory exists
-  await ensureClaudeDirectory();
+  await ensureClaudeDirectory(global);
 
   const packageName = `@claudemesh/${domainName}`;
   const spinner = ora('Checking package installation').start();
@@ -86,17 +87,23 @@ export async function add(domainName: string): Promise<void> {
 
     // Copy files
     spinner.start('Copying agents and skills');
-    const result = await copyDomainFiles(domainName, packagePath);
+    const result = await copyDomainFiles(domainName, packagePath, global);
     spinner.succeed('Copied agents and skills');
 
     // Update manifest
     spinner.start('Updating manifest');
-    await addDomainToManifest(domainName, version, result.agents, result.skills);
+    await addDomainToManifest(domainName, version, result.agents, result.skills, global);
     spinner.succeed('Updated manifest');
 
-    console.log(chalk.green('\n✅ Successfully added ') + chalk.cyan(packageName));
+    const locationText = global ? chalk.magenta('globally') : chalk.cyan('locally');
+    console.log(chalk.green('\n✅ Successfully added ') + chalk.cyan(packageName) + chalk.gray(` ${locationText}`));
     console.log(chalk.gray(`   Agents: ${result.agents.length}`));
     console.log(chalk.gray(`   Skills: ${result.skills.length}`));
+
+    if (global) {
+      console.log(chalk.gray(`\n   Location: ~/.claude/`));
+      console.log(chalk.magenta(`   Available in all projects!`));
+    }
     console.log();
   } catch (error) {
     spinner.fail('Failed to add domain');

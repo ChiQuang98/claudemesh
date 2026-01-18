@@ -6,7 +6,7 @@ import { getAllDomains, addDomainToManifest } from '../utils/manifest';
 import { copyDomainFiles, removeDomainFiles } from '../utils/file-copier';
 
 export async function sync(): Promise<void> {
-  console.log(chalk.blue.bold('\n🔄 Syncing domains from node_modules...\n'));
+  console.log(chalk.blue.bold('\n🔄 Syncing ccmesh domains from node_modules...\n'));
 
   const spinner = ora('Loading manifest').start();
 
@@ -16,7 +16,7 @@ export async function sync(): Promise<void> {
 
     if (domainNames.length === 0) {
       spinner.info('No domains to sync');
-      console.log(chalk.gray('\nUse'), chalk.cyan('claudemesh add <domain>'), chalk.gray('to add domains.\n'));
+      console.log(chalk.gray('\nUse'), chalk.cyan('ccmesh add <domain>'), chalk.gray('to add domains.\n'));
       return;
     }
 
