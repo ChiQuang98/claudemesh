@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "domains": {
+    "frontend-react": {
+      "version": "1.0.0",
+      "agents": [
+        "hooks-expert",
+        "nextjs-specialist",
+        "performance-optimizer",
+        "react-architect",
+        "state-management"
+      ],
+      "skills": [
+        "component-patterns",
+        "nextjs-patterns",
+        "styling-patterns",
+        "testing-patterns"
+      ]
+    },
+    "git": {
+      "version": "1.0.0",
+      "agents": [
+        "branch-manager",
+        "code-reviewer",
+        "commit-expert",
+        "pr-helper"
+      ],
+      "skills": [
+        "conflict-resolution",
+        "git-conventions"
+      ]
+    }
+  }
+}

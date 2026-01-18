@@ -1,0 +1,23 @@
+{
+  "name": "@claudemesh/frontend-react",
+  "version": "1.0.2",
+  "description": "Frontend development agents and skills for React/Next.js",
+  "keywords": [
+    "claude-code",
+    "frontend",
+    "react",
+    "nextjs",
+    "hooks"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

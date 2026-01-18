@@ -1,0 +1,25 @@
+{
+  "name": "@claudemesh/backend-node",
+  "version": "1.0.2",
+  "description": "Backend development agents and skills for Node.js/TypeScript",
+  "keywords": [
+    "claude-code",
+    "backend",
+    "nodejs",
+    "typescript",
+    "api",
+    "express",
+    "nestjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

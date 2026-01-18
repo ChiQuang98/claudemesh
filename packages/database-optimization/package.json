@@ -1,0 +1,24 @@
+{
+  "name": "@claudemesh/database-optimization",
+  "version": "1.0.2",
+  "description": "General SQL database optimization agents and skills",
+  "keywords": [
+    "claude-code",
+    "database",
+    "sql",
+    "optimization",
+    "performance",
+    "indexing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

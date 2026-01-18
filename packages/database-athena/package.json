@@ -1,0 +1,24 @@
+{
+  "name": "@claudemesh/database-athena",
+  "version": "1.0.2",
+  "description": "AWS Athena optimization agents and skills",
+  "keywords": [
+    "claude-code",
+    "aws",
+    "athena",
+    "sql",
+    "data-lake",
+    "presto"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

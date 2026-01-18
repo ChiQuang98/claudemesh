@@ -1,0 +1,23 @@
+{
+  "name": "@claudemesh/git",
+  "version": "1.0.2",
+  "description": "Git workflow automation agents and skills for Claude Code",
+  "keywords": [
+    "claude-code",
+    "git",
+    "commit",
+    "branch",
+    "pull-request"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src/agents/**/*.md",
+    "src/skills/**/*.md",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudemesh"
+  }
+}

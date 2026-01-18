@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "domains": {
+    "git": {
+      "version": "1.0.0",
+      "agents": [
+        "branch-manager",
+        "code-reviewer",
+        "commit-expert",
+        "pr-helper"
+      ],
+      "skills": [
+        "conflict-resolution",
+        "git-conventions"
+      ]
+    }
+  }
+}
