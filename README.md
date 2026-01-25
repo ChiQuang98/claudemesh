@@ -102,7 +102,32 @@ Output:
     └── skills (4)
 ```
 
-## Usage Examples
+## Slash Commands (Skills)
+
+ClaudeMesh provides useful slash commands you can use directly in Claude Code:
+
+| Command | Description |
+|---------|-------------|
+| `/ccmesh-clean` | Clean AI-generated temp files, drafts, and analysis files |
+| `/ccmesh-status` | Check project health, git status, and installed domains |
+| `/ccmesh-fix` | Auto-fix linting, formatting, and common code issues |
+| `/ccmesh-docs` | Generate or update project documentation |
+| `/ccmesh-optimize` | Analyze code for performance and suggest optimizations |
+| `/review-code` | Comprehensive code review with security checks |
+| `/securify` | Security analysis and hardening guide |
+
+### Usage Examples
+
+```bash
+# In Claude Code, use slash commands:
+> /ccmesh-clean           # Clean up temp files
+> /ccmesh-status          # Check project health
+> /ccmesh-fix             # Auto-fix issues
+> /ccmesh-docs            # Generate documentation
+> /ccmesh-optimize        # Performance analysis
+```
+
+## Usage with Agents
 
 Once installed, Claude Code will automatically use the appropriate agents:
 
