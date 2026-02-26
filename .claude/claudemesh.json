@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "domains": {
+    "python-data": {
+      "version": "1.0.1",
+      "agents": [
+        "data-visualization",
+        "pandas-expert"
+      ],
+      "skills": [
+        "data-cleaning",
+        "jupyter-patterns",
+        "ml-workflow",
+        "pandas-patterns",
+        "python-conventions",
+        "visualization"
+      ]
+    }
+  }
+}
